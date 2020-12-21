@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bike Rental</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="Plugin_bootstrap/css/bootstrap.css" rel="stylesheet">
+    <script src="js/jquery-3.5.0.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.1.3/firebase.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/emailjs-com@2/dist/email.min.js"></script>
+    <script src="js/config.js"></script>
+    <link href="CSS/main.css" rel="stylesheet">
+    <style>
+        *{
+            box-sizing: border-box;
+        }
+        .container_time{
+            margin: 0 auto;
+            padding: 0px 0 16px 0;
+        }
+        .time{
+            position: relative;
+        }
+        .step{
+            margin-bottom: 32px;
+        }
+        .step::before{
+            content: "";
+            position: absolute;
+            width: 16px;
+            height: 16px;
+            background-color: #96A9C4;
+            border-radius: 50%;
+            left: -32px;
+        }
+        .timeline::after{
+            content: "";
+            position: absolute;
+            border-left: 1px solid #96A9C4;
+            top: 10px;
+            bottom: 0px;
+            left: -24px;
+        }
+        .timeline:nth-child(5)::after{
+            bottom: -3px !important;
+            }
+    </style>
+
+</head>
+<body>
+
+<div class="container-fluid header clearfix bg-dark">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark d-flex justify-content-between">
+        <a href="Overview.html"><img class="mr-lg-5" width="240" src="images/Ciee_logo.svg"></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item h4 mb-0">
+                    <a class="nav-link" href="Overview.html">Overview <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item h4 mb-0">
+                    <a class="nav-link" href="Rental.html">Rental</a>
+                </li>
+                <li class="nav-item h4 mb-0">
+                    <a class="nav-link" href="Membership.html">Membership</a>
+                </li>
+                <li class="nav-item h4 mb-0">
+                    <a class="nav-link" href="Mailinglist.html">Mailinglist</a>
+                </li>
+                <li class="nav-item h4 mb-0">
+                    <a class="nav-link" href="Setting.html">Setting</a>
+                </li>
+                <li class="nav-item h4 mb-0 ">
+                    <a class="log_out nav-link text-danger" href="index.html">Log out</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</div>
+
+
+<div id="r" class="container-fluid rental block clearfix ">
+    <div class="container">
+        <h1 class="text-primary pt-5">Rental</h1>
+        <p>In this page you can help a student with check in or check out process.</p>
+        <form class="container_time d-flex justify-content-center">
+            <div class="time form-row pt-1 ml-3">
+                <div class="step timeline col-lg-8 my-3 ">
+                    <h2 class="col-lg-8 pl-0">Step 1:</h2>
+                    <label class="mr-sm-2 sr-only" for="inlineFormCustomSelectforaction">Preference</label>
+                    <select class="custom-select mr-sm-2" id="inlineFormCustomSelectforaction">
+                        <option selected disabled value="">--Select the action--</option>
+                        <option value="check out">Check out</option>
+                        <option value="check in">Check in</option>
+                    </select>
+                </div>
+
+                <div class="step timeline col-lg-8 my-3">
+                    <h2 class="col-lg-8 pl-0">Step 2: </h2>
+                    <label class="mr-sm-2 sr-only" for="inlineFormCustomSelectforbike">Preference</label>
+                    <select class="custom-select mr-sm-2" id="inlineFormCustomSelectforbike">
+                        <option selected disabled>--Select a Bike--</option>
+
+                    </select>
+                </div>
+                <div class="step timeline col-lg-8 my-3">
+                    <h2 class="col-lg-8 pl-0">Step 3: </h2>
+                    <p class="my-1">You should merely find the only person corresponded to the selected bike when <span class="text-danger">checking in.</span></p>
+                    <label class="mr-sm-2 sr-only" for="inlineFormCustomSelectforuser">Preference</label>
+                    <select class="custom-select mr-sm-2" id="inlineFormCustomSelectforuser">
+                        <option selected disabled>--Select a person--</option>
+
+                    </select>
+                </div>
+                <fieldset disabled>
+                <div class="form-group" id="disabledTextInput" style="display: none">
+                </div>
+                </fieldset>
+                <div class="step timeline col-lg-8 my-3 d-flex justify-content-between">
+                    <h2 class="col-lg-8 pl-0">Step 4: </h2>
+                    <button type="submit" class="btn btn-primary px-4" id="recordbtn">Submit</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+<div class="container-fluid record mt-5 mb-3">
+    <div class="container">
+        <h1 class="text-primary pt-5 mb-3">Rental Records<span class="h5 text-dark"> (latest at the top)</span></h1>
+        <div class="table-responsive" style="overflow: scroll; height: 500px">
+            <table  class="table table-hover">
+            <thead>
+            <tr class="bg-light">
+                <th scope="col">Action</th>
+                <th scope="col">Bike</th>
+                <th scope="col">User</th>
+                <th scope="col">Timestamp</th>
+            </tr>
+            </thead>
+            <tbody id="tbody">
+
+            </tbody>
+        </table>
+        </div>
+    </div>
+</div>
+
+
+<div class="container-fluid footer bg-dark">
+    <p class="currentUser text-light m-0 pt-1 text-center"></p>
+    <div class="d-flex justify-content-center flex-column align-items-center">
+        <p class="text-white pt-3">If you need any support</p>
+        <p class="text-white">Email : <a href="mailto:chenyizhi1011@gmail.com" class="text-white">chenyizhi1011@gmail.com</a></p>
+    </div>
+</div>
+
+</body>
+
+<script>
+    var emailuser='';
+    firebase.auth().onAuthStateChanged(function(user) {
+        const currentUser = document.querySelector('.currentUser');
+        if (user) {
+            // console.log('Online');
+            emailuser = user.email;
+            currentUser.textContent = 'User: '+emailuser;
+            // console.log(emailuser);
+
+        } else {
+            // console.log('offline');
+            currentUser.textContent = 'offline';
+            window.location.href='Login.html';
+        }
+    });
+
+
+    //Ajax option generation
+    const action = document.querySelector('#inlineFormCustomSelectforaction');
+    const userchoice = document.querySelector('#inlineFormCustomSelectforuser');
+    const bikechoice = document.querySelector('#inlineFormCustomSelectforbike');
+    var bikeUser = '';
+    action.addEventListener('change',function (e){
+        if(action.value === "check out"){
+            // console.log('check out');
+
+            //load available bike
+            msgRef.ref('/Bike/').on('value',function (snapshot){
+                let val = snapshot.val();
+                var list = '';
+                $.each(val , function (i, item){
+                    if(item.functionality === "" && item.availability === "") {
+                        // console.log(i, item);
+                        list = `${list}<option value=${item.Bikenumber}>${item.Bikenumber.replace('_',' ')}</option>`;
+                        $('#inlineFormCustomSelectforbike').html('<option selected disabled value="">--Select a Bike--</option>' + list);
+                    }
+                });
+            });
+
+            //choose bike and load member whose 'hasBike' is false
+            bikechoice.addEventListener('change',function (){
+                // console.log(bikechoice.value);
+                msgRef.ref('/Member/').on('value',function (snapshot) {
+                    let val = snapshot.val();
+                    var list = '';
+                    $.each(val, function (i, item) {
+                        if(item.hasbike === false){
+                            // console.log(i, item);
+                            list = `${list}<option class="opt" id="${item.firstname}_${item.lastname}" value=${item.firstname}_${item.lastname}>${item.firstname} ${item.lastname}</option>`;
+                            $('#inlineFormCustomSelectforuser').html('<option selected disabled value="">--Select a person--</option>' + list);
+                        }
+                    });
+                });
+            },false);
+
+            //use only for recording the email
+            userchoice.addEventListener('change',function (){
+                // console.log('user choice');
+                msgRef.ref('/Member/').on('value',function (snapshot) {
+                    let val = snapshot.val();
+                    var list = '';
+                    $.each(val, function (i, item) {
+                        // console.log(i, item);
+                        if(userchoice.value === `${item.firstname}_${item.lastname}`){
+                            list = `${list}<input type="text" id="disabledTextInput" class="form-control" placeholder="email" value=${item.emailaddress}>`;
+                            $('#disabledTextInput').html(list);
+                            document.querySelector('#disabledTextInput').value= `${item.emailaddress}`;
+                        }
+                    });
+                });
+               }, false);
+
+        }
+
+        else if(action.value === "check in"){
+            // console.log('check in');
+
+            //load all checked out bike
+            msgRef.ref('/Bike/').on('value',function (snapshot){
+                let val = snapshot.val();
+                var list = '';
+                $.each(val , function (i, item){
+                    if(item.availability !== "") {
+                        // console.log(i, item);
+                        list = `${list}<option value=${item.Bikenumber}>${item.Bikenumber.replace('_',' ')}</option>`;
+                        $('#inlineFormCustomSelectforbike').html('<option selected disabled value="">--Select a Bike--</option>' + list);
+                    }
+                });
+            });
+
+            //load the coresponded person
+            bikechoice.addEventListener('change',function (){
+                // console.log(bikechoice.value);
+                msgRef.ref('/Bike/'+bikechoice.value).on('value',function (snapshot) {
+                    let val = snapshot.val();
+                    // console.log(val)
+                    var list = '';
+                    list = `${list}<option class="opt" id="${val.availability}" value=${val.availability}>${val.availability.replace('_',' ')}</option>`;
+                    $('#inlineFormCustomSelectforuser').html('<option selected disabled value="">--Select a person--</option>' + list);
+                })
+            },false);
+
+            //use for recording the email
+            userchoice.addEventListener('change',function (){
+                // console.log('user choice');
+                msgRef.ref('/Member/').on('value',function (snapshot) {
+                    let val = snapshot.val();
+                    var list = '';
+                    $.each(val, function (i, item) {
+                        // console.log(i, item);
+                        // console.log(userchoice.value);
+                        // console.log(`${item.firstname}_${item.lastname}`);
+
+                        if(userchoice.value === `${item.firstname}_${item.lastname}`){
+                            list = `${list}<input type="text" id="disabledTextInput" class="form-control" placeholder="email" value="${item.emailaddress}">`;
+                            $('#disabledTextInput').html(list);
+                            document.querySelector('#disabledTextInput').value= `${item.emailaddress}`;
+                        }
+                    });
+                });
+            }, false);
+        }
+    }, false);
+
+
+    //set record and update database
+    const formsubmit = document.querySelector('#recordbtn');
+    formsubmit.addEventListener('click', function (e){
+        e.preventDefault();
+        let action = document.querySelector('#inlineFormCustomSelectforaction').value;
+        let bike = document.querySelector('#inlineFormCustomSelectforbike').value;
+        let user = document.querySelector('#inlineFormCustomSelectforuser').value;
+        let usermail = document.querySelector('#disabledTextInput').value;
+        let timestamp = formatDate();
+        let realtime = new Date().getTime();
+
+        let sortFactor =999999999999999-e.timeStamp;
+        if(action === "" || bike=== "" || user===""){
+            alert("Please select all blanks");
+        }
+
+        if(action === "check out"){
+            // console.log('click check out');
+            msgRef.ref('/Record/'+timestamp).set({
+                action: action,
+                bike : bike,
+                user:user,
+                userEmail: usermail,
+                timestamp: timestamp,
+                sortFactor : sortFactor,
+                timestampInMSec : realtime,
+            });
+
+            msgRef.ref('/Bike/'+ bike).set({
+                Bikenumber: bike,
+                functionality :'',
+                availability: user,
+                emailaddress: usermail,
+            });
+
+            msgRef.ref('/Member/'+ user).update({
+                hasbike:true,
+                bikeout :formatDate(),
+                warningCode : 0,
+            });
+        }else if(action === "check in"){
+            // console.log('click check in');
+            msgRef.ref('/Record/'+timestamp).set({
+                action: action,
+                bike : bike,
+                user:user,
+                userEmail: usermail,
+                timestamp: timestamp,
+                sortFactor : sortFactor,
+
+            });
+            msgRef.ref('/Bike/'+ bike).set({
+                Bikenumber: bike,
+                functionality :'',
+                availability:'',
+                emailaddress:'',
+            });
+            msgRef.ref('/Member/'+ user).update({
+                hasbike:false,
+                bikeout :"",
+                warningCode : 0,
+            });
+        }
+        msgRef.ref('/Member/' + user).once('child_added',function (){
+
+            let templateParams = {
+                mailadress : usermail,
+                Name : user.replace('_',' '),
+                Action: action,
+                Bike : `${bike}`,
+                Time : `${timestamp}`,
+            };
+            console.log(templateParams);
+            console.log(templateParams.Bike);
+            console.log(templateParams.Time);
+            console.log(templateParams.Action);
+
+            sendMail_rent(templateParams);
+            alert(action +' success');
+            // console.log('click')
+        });
+    }, false);
+
+
+
+
+    //show the record
+    $(document).ready(function (){
+        msgRef.ref('/Record/').limitToLast(20).on('value',function (snapshot){
+            let val = snapshot.val();
+            // console.log(val);
+
+            var list = '';
+            $.each(val , function (i, item){
+                //console.log(i, item);
+                if(item.action === 'check out'){
+                    list = `<tr>
+                        <th class="text-danger" scope="row">${item.action}</th>
+                        <td>${item.bike.replace('_',' ')}</td>
+                        <td>${item.user.replace('_',' ')}</td>
+                        <td>${item.timestamp}</td>
+                        </tr>${list}`;
+                }else if(item.action === 'check in'){
+                    list = `<tr>
+                        <th class="text-success" scope="row">${item.action}</th>
+                        <td>${item.bike.replace('_',' ')}</td>
+                        <td>${item.user.replace('_',' ')}</td>
+                        <td>${item.timestamp}</td>
+                        </tr>${list}`;
+                }
+
+                $('#tbody').html(list);
+            });
+        });
+    });
+
+    //log out
+    logOut = document.querySelector('.log_out');
+    logOut.addEventListener('click',logOutBtn,false);
+
+
+    //auto log out
+    setTimeout(autoLogOut,900000);
+
+</script>
+<script src="Plugin_bootstrap/js/bootstrap.js"></script>
+</html>

@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bike Rental</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="Plugin_bootstrap/css/bootstrap.css" rel="stylesheet">
+    <script src="js/jquery-3.5.0.js"></script>
+    <script src="js/vue.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.1.3/firebase.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/emailjs-com@2/dist/email.min.js"></script>
+    <script src="js/config.js"></script>
+    <link href="CSS/main.css" rel="stylesheet">
+
+
+</head>
+<body>
+
+<div class="container-fluid header clearfix bg-dark">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark d-flex justify-content-between">
+        <a href="Overview.html"><img class="mr-lg-5" width="240" src="images/Ciee_logo.svg"></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item h4 mb-0">
+                    <a class="nav-link" href="Overview.html">Overview <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item h4 mb-0">
+                    <a class="nav-link" href="Rental.html">Rental</a>
+                </li>
+                <li class="nav-item h4 mb-0">
+                    <a class="nav-link" href="Membership.html">Membership</a>
+                </li>
+                <li class="nav-item h4 mb-0">
+                    <a class="nav-link" href="Mailinglist.html">Mailinglist</a>
+                </li>
+                <li class="nav-item h4 mb-0">
+                    <a class="nav-link" href="Setting.html">Setting</a>
+                </li>
+                <li class="nav-item h4 mb-0 ">
+                    <a class="log_out nav-link text-danger" href="index.html">Log out</a>
+                </li>
+
+            </ul>
+        </div>
+    </nav>
+</div>
+<div id="mailling" class="container-fluid maillinglist clearfix">
+    <div class="container">
+        <h1 class="text-primary pt-5">Mailinglist </h1>
+
+        <h5> Here you can send students mails with clicks. <span class="text-danger"> This page requires a little more loading time.</span></h5>
+        <div  class="embed-responsive embed-responsive-16by9">
+            <video class="embed-responsive-item" src="images/warningProcess.m4v" autoplay controls loop allowfullscreen></video>
+        </div>
+
+        <div class="table-responsive mt-5">
+
+        <keep-alive>
+            <table class="table table-hover mt-3 mx-0">
+                <thead>
+                    <tr>
+                        <th scope="col">Bike</th>
+                        <th scope="col">User</th>
+                        <th scope="col">Email Adresse</th>
+                        <th scope="col">Since</th>
+                        <th scope="col">Reminder</th>
+                        <th scope="col">1st Warning</th>
+                        <th scope="col">2st Warning</th>
+                        <th scope="col">Terminal</th>
+                    </tr>
+                </thead>
+                <tbody id="tbody">
+
+                </tbody>
+            </table>
+        </keep-alive>
+    </div>
+        <ul id="ul" class="list-unstyled"></ul>
+    </div>
+</div>
+
+<div class="container-fluid footer bg-dark">
+    <p class="currentUser text-light m-0 pt-1 text-center"></p>
+    <div class="d-flex justify-content-center flex-column align-items-center">
+        <p class="text-white pt-3">If you need any support</p>
+        <p class="text-white">Email : <a href="mailto:chenyizhi1011@gmail.com" class="text-white">chenyizhi1011@gmail.com</a></p>
+    </div>
+</div>
+
+</body>
+
+<script>
+
+
+    var emailuser='';
+    firebase.auth().onAuthStateChanged(function(user) {
+        const currentUser = document.querySelector('.currentUser');
+        if (user) {
+            console.log('Online');
+            emailuser = user.email;
+            currentUser.textContent = 'User: '+emailuser;
+            console.log(emailuser);
+        } else {
+            console.log('offline');
+            currentUser.textContent = 'offline';
+            window.location.href='Login.html';
+        }
+    });
+
+
+
+    //load all checkout
+    $(document).ready(function (){
+        msgRef.ref('/Bike/').on('value',function (snapshotBike){
+            console.log('into Bike');
+            msgRef.ref('/Member/').on('value',function (snapshotMember){
+                console.log('into Membere');
+                msgRef.ref('/Record/').limitToLast(30).on('value',function (snapshotRecord){
+                    console.log('into Record');
+                    let valBike = snapshotBike.val();
+                    let valMember = snapshotMember.val();
+                    let valRecord = snapshotRecord.val();
+                    var list = '';
+                    $.each(valBike , function (i, itemB){
+                        $.each(valMember , function (j, itemM){
+                            $.each(valRecord , function (k, itemR) {
+                                if (itemM.hasbike === true && itemB.availability === j && j === itemR.user && itemB.Bikenumber === itemR.bike && itemR.action ==="check out" && itemM.bikeout === k) {
+
+                                    if(itemM.warningCode === 0){
+                                        list = `${list}<tr>
+                                                <td>${itemB.Bikenumber.replace('_',' ')}</td>
+                                                <td>${itemM.firstname}</td>
+                                                <td>${itemM.emailaddress}</td>
+                                                <td class="timeColor">${itemR.timestamp}</td>
+                                                <td class="text-center"><button type="button" class="btn btn-primary sendReminder" data-key="${j}">send</button></td>
+                                                </tr>`;
+                                    }else if(itemM.warningCode === 1){
+                                        list = `${list}<tr>
+                                                <td>${itemB.Bikenumber.replace('_',' ')}</td>
+                                                <td>${itemM.firstname}</td>
+                                                <td>${itemM.emailaddress}</td>
+                                                <td class="timeColor">${itemR.timestamp}</td>
+                                                <td class="text-center"><button type="button" class="btn btn-primary sendReminder disabled" >done</button></td>
+                                                <td class="text-center"><button type="button" class="btn btn-info sendFirWarning" data-key="${j}">send</button></td>
+                                                </tr>`;
+                                    }else if(itemM.warningCode === 2){
+                                        list = `${list}<tr>
+                                                <td>${itemB.Bikenumber.replace('_',' ')}</td>
+                                                <td>${itemM.firstname}</td>
+                                                <td>${itemM.emailaddress}</td>
+                                                <td class="timeColor">${itemR.timestamp}</td>
+                                                <td class="text-center"><button type="button" class="btn btn-primary sendReminder disabled" >done</button></td>
+                                                <td class="text-center"><button type="button" class="btn btn-info sendFirWarning disabled">done</button></td>
+                                                <td class="text-center"><button type="button" class="btn btn-warning sendSecWarning" data-key="${j}">send</button></td>
+                                                </tr>`;
+                                    }else if(itemM.warningCode === 3){
+                                        list = `${list}<tr>
+                                                <td>${itemB.Bikenumber.replace('_',' ')}</td>
+                                                <td>${itemM.firstname}</td>
+                                                <td>${itemM.emailaddress}</td>
+                                                <td class="timeColor">${itemR.timestamp}</td>
+                                                <td class="text-center"><button type="button" class="btn btn-primary sendReminder disabled" >done</button></td>
+                                                <td class="text-center"><button type="button" class="btn btn-info sendFirWarning disabled">done</button></td>
+                                                <td class="text-center"><button type="button" class="btn btn-warning sendSecWarning disabled">done</button></td>
+                                                <td class="text-center"><button type="button" class="btn btn-danger sendTerminal" data-key="${j}">send</button></td>
+                                                </tr>`;
+                                    }else if(itemM.warningCode === 4){
+                                        list = `${list}<tr>
+                                                <td>${itemB.Bikenumber.replace('_',' ')}</td>
+                                                <td>${itemM.firstname}</td>
+                                                <td>${itemM.emailaddress}</td>
+                                                <td class="timeColor">${itemR.timestamp}</td>
+                                                <td class="text-center"><button type="button" class="btn btn-primary sendReminder disabled" >done</button></td>
+                                                <td class="text-center"><button type="button" class="btn btn-info sendFirWarning disabled" >done</button></td>
+                                                <td class="text-center"><button type="button" class="btn btn-warning sendSecWarning disabled" >done</button></td>
+                                                <td class="text-center"><button type="button" class="btn btn-danger sendTerminal disabled" >terminated</button></td>
+                                                </tr>`;
+                                    }
+                                        $('#tbody').html(list);
+                                    }else{
+                                        console.log(false);
+                                }
+                            });
+                        });
+                    });
+                });
+            });
+        });
+
+            $('#tbody').on('click', '.sendReminder',function (){
+                let key = $(this).data('key');
+                msgRef.ref('/Member/').child(key).on('value',function (snapshot) {
+                    let val = snapshot.val();
+                    console.log(val);
+                    let templateParams = {
+                        title :'friendly reminder',
+                        msg:'You have rented out a bike and is over the allocated timeslot. Please bring it back as soon as possible.',
+                        mailadress : val.emailaddress,
+                        Name : val.firstname,
+                    };
+                    console.log(templateParams);
+
+                    emailjs.send('service_7zh11gp', 'template_vszkyxr', templateParams)
+                        .then(function (response) {
+                            console.log('SUCCESS!', response.status, response.text);
+                        }, function (error) {
+                            console.log('FAILED...', error);
+                            alert('Mailing Error, please try again');
+                        });
+                    });
+                msgRef.ref('/Member/').child(key).update({warningCode : 1});
+                this.textContent = 'done';
+            });
+
+
+            $('#tbody').on('click', '.sendFirWarning',function (){
+                let key = $(this).data('key');
+                msgRef.ref('/Member/').child(key).on('value',function (snapshot) {
+                    let val = snapshot.val();
+                    console.log(val);
+                    let templateParams = {
+                        title :'first warning',
+                        msg:'You have rented out a bike and is over the allocated timeslot. Please bring it back as soon as possible.',
+                        mailadress : val.emailaddress,
+                        Name : val.firstname,
+                    };
+                    emailjs.send('service_7zh11gp', 'template_vszkyxr', templateParams)
+                        .then(function (response) {
+                            console.log('SUCCESS!', response.status, response.text);
+                        }, function (error) {
+                            console.log('FAILED...', error);
+                            alert('Mailing Error, please try again');
+                        });
+
+                });
+                msgRef.ref('/Member/').child(key).update({warningCode : 2});
+                this.textContent = 'done';
+            });
+
+
+            $('#tbody').on('click', '.sendSecWarning',function (){
+                let key = $(this).data('key');
+                msgRef.ref('/Member/').child(key).on('value',function (snapshot) {
+                    let val = snapshot.val();
+                    console.log(val);
+                    let templateParams = {
+                        title :'second warning',
+                        msg:'You have rented out a bike and is over the allocated timeslot. Please bring it back as soon as possible. Next Warning would be the termination of your rental privilege',
+                        mailadress : val.emailaddress,
+                        Name : val.firstname,
+                    };
+                    emailjs.send('service_7zh11gp', 'template_vszkyxr', templateParams)
+                        .then(function (response) {
+                            console.log('SUCCESS!', response.status, response.text);
+                        }, function (error) {
+                            console.log('FAILED...', error);
+                            alert('Mailing Error, please try again');
+                        });
+
+                });
+                msgRef.ref('/Member/').child(key).update({warningCode : 3});
+                this.textContent = 'done';
+            });
+
+
+            $('#tbody').on('click', '.sendTerminal',function (){
+                let key = $(this).data('key');
+                msgRef.ref('/Member/').child(key).on('value',function (snapshot) {
+                    let val = snapshot.val();
+                    console.log(val);
+                    let templateParams = {
+                        title :'last email',
+                        msg:'You have rented out a bike and is over the allocated timeslot, please bring it back as soon as possible. Your rental privilege terminates at this point.' ,
+                        mailadress : val.emailaddress,
+                        Name : val.firstname,
+                    };
+                    emailjs.send('service_7zh11gp', 'template_vszkyxr', templateParams)
+                        .then(function (response) {
+                            console.log('SUCCESS!', response.status, response.text);
+                        }, function (error) {
+                            console.log('FAILED...', error);
+                            alert('Mailing Error, please try again');
+                        });
+
+                });
+                msgRef.ref('/Member/').child(key).update({warningCode : 4});
+            });
+    });
+
+
+    //log out
+    logOut = document.querySelector('.log_out');
+    logOut.addEventListener('click',logOutBtn,false);
+
+
+    //auto log out
+    setTimeout(autoLogOut,900000);
+
+
+
+
+</script>
+<script src="Plugin_bootstrap/js/bootstrap.js"></script>
+</html>

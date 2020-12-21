@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bike Rental</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <script src="js/jquery-3.5.0.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.1.3/firebase.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/emailjs-com@2/dist/email.min.js"></script>
+    <script src="Plugin_bootstrap/js/bootstrap.js"></script>
+    <script src="js/config.js"></script>
+    <link href="Plugin_bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link href="CSS/main.css" rel="stylesheet">
+
+</head>
+<body>
+
+<div class="container-fluid header clearfix bg-dark">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark d-flex justify-content-between">
+        <a href="Overview.html"><img class="mr-lg-5" width="240" src="images/Ciee_logo.svg"></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item h4 mb-0">
+                    <a class="nav-link" href="Overview.html">Overview <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item h4 mb-0">
+                    <a class="nav-link" href="Rental.html">Rental</a>
+                </li>
+                <li class="nav-item h4 mb-0">
+                    <a class="nav-link" href="Membership.html">Membership</a>
+                </li>
+                <li class="nav-item h4 mb-0">
+                    <a class="nav-link" href="Mailinglist.html">Mailinglist</a>
+                </li>
+                <li class="nav-item h4 mb-0">
+                    <a class="nav-link" href="Setting.html">Setting</a>
+                </li>
+                <li class="nav-item h4 mb-0 ">
+                    <a class="log_out nav-link text-danger" href="index.html">Log out</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</div>
+
+<div class="container-fluid setting mb-5">
+    <div class="container">
+        <h1 class="text-primary pt-5">Rental</h1>
+        <div class="col-lg-8 mx-auto mb-5 mt-3">
+            <h2 class="text-info">Create a Member</h2>
+            <h5>Here you can add person as a Member manually without taking a test</h5>
+            <input type="text" class="form-control mt-3" id="people_firstname" placeholder="Firstname">
+            <input type="text" class="form-control mt-2" id="people_lastname" placeholder="LastName">
+            <input type="text" class="form-control mt-2" id="people_email" placeholder="Email">
+            <input type="text" class="form-control mt-2" id="people_roomNumber" placeholder="Room Number">
+            <select class="custom-select mr-sm-2 mt-2" id="people_stay">
+                <option selected disabled>--Stay--</option>
+                <option value="1">Till end of Block I</option>
+                <option value="2">Till end of Block II</option>
+                <option value="3">Till end of Block III</option>
+                <option value="Staff">Staff</option>
+            </select>
+            <div class="d-flex justify-content-lg-end">
+                <button class="btn btn-primary create mt-3 float-right px-4" id="people_create">create</button>
+            </div>
+        </div>
+
+        <div class="col-lg-8 mx-auto my-5">
+            <h2 class="text-info">Submit a bike Issue</h2>
+            <h5>Here you can submit a bike issue and the bike will then be unavailable</h5>
+            <h5><span class="text-danger">*</span>If student report an issue, please check in the bike first and then use the this form</h5>
+            <select class="custom-select mr-sm-2 mt-2" id="bike_issue_select">
+
+            </select>
+        <input type="text" class="form-control mt-2" id="bike_issue" placeholder="Bike Issue...">
+            <div class="d-flex justify-content-lg-end">
+                <button class="btn btn-primary mt-3 px-4 float-right" id="bike_issue_submit">submit</button>
+            </div>
+        </div>
+        <div class="col-lg-8 mx-auto mt-5 mb-5">
+            <h2 class="text-info">Solve an Issue</h2>
+            <h5>Here you can set the bike to default when the bike issue is solved</h5>
+            <select class="custom-select mr-sm-2 mt-2" id="bike_solve_select">
+
+            </select>
+            <div class="d-flex justify-content-lg-end">
+                <button class="btn btn-primary mt-3 px-4 float-right" id="bike_solve_submit">Problem solved</button>
+            </div>
+        </div>
+        <div class="col-lg-8 mx-auto mt-5">
+            <h2 class="text-info">Create new bike</h2>
+            <h5>Here you can add a new bike to the list</h5>
+            <p class="m-0"><span class="text-danger">Please use the default pattern to avoid any error</span>, for instance, Bike named flash should be entered als "Bike_flash", Bike named 100 should be entered als "Bike_100"</p>
+            <p class="m-0"></p>
+            <input type="text" class="form-control mt-2" id="creatBikeNumber" placeholder="Bike_number" value="Bike_">
+            <div class="d-flex justify-content-lg-end">
+                <button class="btn btn-primary mt-3 px-4 float-right" id="bike_create_send">create</button>
+            </div>
+        </div>
+        <div class="col-lg-8 mx-auto mt-5 mb-5">
+            <h2 class="text-info">Remove a bike</h2>
+            <h5>Here you can remove, for example,a stolen bike</h5>
+            <select class="custom-select mr-sm-2 mt-2" id="bike_remove_select">
+
+            </select>
+            <div class="d-flex justify-content-lg-end">
+                <button class="btn btn-primary mt-3 px-4 float-right" id="bike_remove_submit">remove</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="container-fluid footer bg-dark">
+    <p class="currentUser text-light m-0 pt-1 text-center"></p>
+    <div class="d-flex justify-content-center flex-column align-items-center">
+        <p class="text-white pt-3">If you need any support</p>
+        <p class="text-white">Email : <a href="mailto:chenyizhi1011@gmail.com" class="text-white">chenyizhi1011@gmail.com</a></p>
+    </div>
+</div>
+</body>
+
+<script>
+    var emailuser='';
+    firebase.auth().onAuthStateChanged(function(user) {
+        const currentUser = document.querySelector('.currentUser');
+        if (user) {
+            console.log('Online');
+            emailuser = user.email;
+            currentUser.textContent = 'User: '+emailuser;
+            console.log(emailuser);
+        } else {
+            console.log('offline');
+            currentUser.textContent = 'offline';
+            window.location.href='Login.html';
+        }
+    });
+
+
+    //Create people
+    const btn_peopleCreate = document.querySelector('#people_create');
+    btn_peopleCreate.addEventListener('click', function (){
+        let fName = document.querySelector('#people_firstname').value.trim();
+        let lName = document.querySelector('#people_lastname').value.trim();
+        let roomNr = document.querySelector('#people_roomNumber').value.trim();
+        let email = document.querySelector('#people_email').value;
+        let stay = document.querySelector('#people_stay').value;
+        let firstName = initCapital(fName);
+        let lastName = initCapital(lName);
+
+        if(fName==="" ||lName==="" ||roomNr==="" ||email==="" ||stay==="" ){
+            alert('please fill in all fields');
+        }else if(ValidateEmail(email)===false){
+            alert('wrong email format');
+        }
+        else{
+
+        msgRef.ref('/Member/'+firstName+'_'+lastName).set({
+            firstname: firstName,
+            lastname : lastName,
+            roomnumber: roomNr,
+            emailaddress: email,
+            stay:stay,
+            hasbike :false,
+        });
+
+        msgRef.ref('/Member/').once('child_added',function (){
+            let templateParams = {
+                title : 'welcome letter',
+                msg:'You can now go to the reception an rental out your bike!',
+                Name : firstName,
+                mailadress: email,
+            };
+            sendMail_info(templateParams);
+            alert('Create success');
+            console.log('click')
+        });
+        }
+    }, false);
+
+
+
+
+
+
+    //Bike Issue submit
+    const btn_bikeIssue = document.querySelector('#bike_issue_submit');
+
+    $(document).ready(function (){
+        msgRef.ref('/Bike/').on('value',function (snapshot){
+            let val = snapshot.val();
+            var list = '';
+            $.each(val , function (i, item){
+                console.log(i, item);
+                if(item.emailaddress !== "")return;
+                list = `${list}<option value=${item.Bikenumber}>${item.Bikenumber.replace('_',' ')}</option>`;
+                $('#bike_issue_select').html('<option selected disabled>--Select a Bike--</option>'+list);
+            });
+        });
+    });
+    btn_bikeIssue.addEventListener('click',function (){
+        const bike = document.querySelector('#bike_issue_select').value;
+        const issue = document.querySelector('#bike_issue').value.trim();
+        if(bike ==="" || issue===""){
+            alert('please fill in all fields');
+        }else{
+        msgRef.ref('/Bike/'+ bike).set({
+            Bikenumber: bike,
+            functionality : issue,
+            availability: '',
+            emailaddress: '',
+        });
+        console.log(bike);
+        msgRef.ref('/Bike/'+bike).once('child_added',function (){
+            alert('Issue report success');
+            console.log('click')
+        });
+        }
+    }, false);
+
+    //Bike Issue solved
+    const btn_bikeSolve = document.querySelector('#bike_solve_submit');
+    $(document).ready(function (){
+        msgRef.ref('/Bike/').on('value',function (snapshot){
+            let val = snapshot.val();
+            var list = '';
+            $.each(val , function (i, item){
+                if(item.functionality !== ""){
+                    console.log(i, item);
+                    list = `${list}<option class="solve" data-key=${i} value=${item.Bikenumber}>${item.Bikenumber.replace('_',' ')}</option>`
+                    $('#bike_solve_select').html('<option selected disabled value="">--Select a Bike--</option>'+list);
+                }
+            });
+        });
+    });
+    btn_bikeSolve.addEventListener('click', function (){
+        let solveBike = document.querySelector('#bike_solve_select').value;
+        if(solveBike === ""){
+            alert('please select a bike');
+        }else {
+            console.log('solve', solveBike);
+            msgRef.ref('/Bike/' + solveBike).update(
+                {
+                    functionality: '',
+                }
+            );
+            msgRef.ref('/Bike/' + solveBike).once('child_added', function () {
+                alert('Issue solved success');
+                console.log('click')
+            });
+        }
+    }, false);
+
+
+    //Create Bike
+    const btn_bikeCreate = document.querySelector('#bike_create_send');
+    btn_bikeCreate.addEventListener('click', function (){
+
+        let Bike = document.querySelector('#creatBikeNumber').value.trim();
+
+        if(Bike ==="Bike_"){
+            alert('please enter a Bike');
+        }else{
+
+
+        Bike = initCapital(Bike);
+        var result= '';
+        msgRef.ref('/Bike/').on('value',function (snapshot){
+            let val = snapshot.val();
+            var list = '';
+            var checkArray = [];
+            console.log(typeof (checkArray));
+            $.each(val , function (i, item){
+                checkArray.push(item.Bikenumber);
+            });
+            console.log(checkArray);
+            result = checkArray.indexOf(Bike);
+
+        });
+        if(result !== -1){
+            console.log('Error, this bike has already existed');
+            alert(`Error, ${Bike} has already existed`);
+        }else{
+            msgRef.ref('/Bike/'+Bike).set({
+                Bikenumber: Bike,
+                functionality : '',
+                availability: '',
+                emailaddress: '',
+            });
+            msgRef.ref('/Bike/'+Bike).once('child_added',function (){
+                alert('Bike create success');
+                console.log('click')
+            });
+
+        }
+        console.log(result);
+
+        }
+    }, false);
+
+
+    //Remove Bike
+    const btn_bikeRemove = document.querySelector('#bike_remove_submit');
+    $(document).ready(function (){
+        msgRef.ref('/Bike/').on('value',function (snapshot){
+            let val = snapshot.val();
+            var list = '';
+            $.each(val , function (i, item){
+                console.log(i, item);
+                list = `${list}<option class="remove" data-key=${i} value=${item.Bikenumber}>${item.Bikenumber.replace('_',' ')}</option>`
+                $('#bike_remove_select').html('<option selected disabled value="">--Select a Bike--</option>'+list);
+            });
+        });
+    });
+    btn_bikeRemove.addEventListener('click', function (){
+        const removedBike = document.querySelector('#bike_remove_select').value;
+        if(removedBike ===""){
+            alert('please select a bike');
+        }else {
+        console.log('remove', removedBike);
+            msgRef.ref('/Bike/'+ removedBike).remove();
+            msgRef.ref('/Bike/').once('child_added',function (){
+            alert('Bike remove success');
+            console.log('click')
+        });
+        }
+    }, false);
+
+
+    //log out
+    logOut = document.querySelector('.log_out');
+    logOut.addEventListener('click',logOutBtn,false);
+
+    //auto log out
+    setTimeout(autoLogOut,900000);
+
+
+</script>
+
+
+</html>

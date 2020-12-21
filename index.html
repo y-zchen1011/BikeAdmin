@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Log-In Page</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="Plugin_bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link href="CSS/main.css" rel="stylesheet">
+    <script src="js/jquery-3.5.0.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.1.3/firebase.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/emailjs-com@2/dist/email.min.js"></script>
+    <script src="js/config.js"></script>
+
+</head>
+<body>
+<div class="container-fluid header clearfix bg-dark">
+    <div class="container">
+        <a href="#"><img class="my-2" src="images/Ciee_logo.svg"></a>
+    </div>
+</div>
+
+
+<div class="container-fluid main clearfix bg-light d-flex justify-content-center align-items-center ">
+    <div class="col-lg-8 mx-auto py-5 ">
+    <h1>Log in</h1>
+    <h5></h5>
+    <input type="email" class="form-control mt-2" id="userMail" placeholder="email address">
+    <input type="password" class="form-control mt-2" id="pw" placeholder="password">
+    <p class="text-danger" id="errMsg"></p>
+    <div class="d-flex justify-content-lg-end">
+        <button class="btn btn-primary mt-2 px-4" id="log_in_send">log in</button>
+    </div>
+    <p class="message"></p>
+</div>
+</div>
+
+
+<div class="container-fluid footer bg-dark d-flex justify-content-center flex-column align-items-center">
+    <p class="text-white pt-4">If you need any support</p>
+    <p class="text-white">Email : <a href="mailto:chenyizhi1011@gmail.com" class="text-white">chenyizhi1011@gmail.com</a></p>
+</div>
+
+
+
+</body>
+<script>
+    var emailuser='';
+    const email =document.querySelector('#userMail');
+    const pwd =document.querySelector('#pw');
+    const message = document.querySelector('.message');
+    const errMsg = document.querySelector('#errMsg');
+
+
+    //login
+    btn_signUp = document.querySelector('#log_in_send');
+    btn_signUp.addEventListener('click', (e) => {
+        e.preventDefault();
+        let user = {
+            emailuser: email.value,
+            pwd: pwd.value
+        };
+        console.log(user.emailuser, user.pwd);
+        firebase.auth().signInWithEmailAndPassword(user.emailuser, user.pwd)
+            .then(() => {
+                var Cuser = firebase.auth().currentUser;
+                if (Cuser) {
+                    msgRef.ref('/userActivity/').push(
+                        {
+                            action: 'sign_in',
+                            time: formatDate(),
+                            email: user.emailuser,
+                        }
+                    );
+                    console.log('User is signed in.');
+                    window.location.href='Overview.html';
+                }
+            })
+            .catch((error) => {
+                console.log(error.message);
+                console.log('No user found');
+                errMsg.textContent = 'No user found';
+            });
+    });
+
+    // Size screen
+    document.querySelector('.main').style.height = (window.innerHeight-166) + 'px';
+    window.onresize = function (){
+        document.querySelector('.main').style.height = (window.innerHeight-166) + 'px';
+    }
+
+</script>
+
+
+</html>

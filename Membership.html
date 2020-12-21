@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bike Rental</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="Plugin_bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link href="CSS/main.css" rel="stylesheet">
+    <script src="js/jquery-3.5.0.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.1.3/firebase.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/emailjs-com@2/dist/email.min.js"></script>
+    <script src="js/config.js"></script>
+</head>
+<body>
+
+<div class="container-fluid header clearfix bg-dark">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark d-flex justify-content-between">
+        <a href="Overview.html"><img class="mr-lg-5" width="240" src="images/Ciee_logo.svg"></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item h4 mb-0">
+                    <a class="nav-link" href="Overview.html">Overview <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item h4 mb-0">
+                    <a class="nav-link" href="Rental.html">Rental</a>
+                </li>
+                <li class="nav-item h4 mb-0">
+                    <a class="nav-link" href="Membership.html">Membership</a>
+                </li>
+                <li class="nav-item h4 mb-0">
+                    <a class="nav-link" href="Mailinglist.html">Mailinglist</a>
+                </li>
+                <li class="nav-item h4 mb-0">
+                    <a class="nav-link" href="Setting.html">Setting</a>
+                </li>
+                <li class="nav-item h4 mb-0 ">
+                    <a class="log_out nav-link text-danger" href="index.html">Log out</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</div>
+
+
+<div class="container-fluid membership clearfix">
+    <div class="container">
+        <h1 class="text-primary pt-5">Membership</h1>
+    <div class="table-responsive">
+    <table class="table table-hover mt-3 mx-0 overflow-auto">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Firstname</th>
+            <th scope="col">Lastname</th>
+            <th scope="col">Room Number</th>
+            <th scope="col">Stay</th>
+            <th scope="col">Email Adresse</th>
+            <th scope="col">Remove</th>
+        </tr>
+        </thead>
+        <tbody id="tbody">
+
+        </tbody>
+    </table>
+    </div>
+    <ul id="ul" class="list-unstyled"></ul>
+</div>
+</div>
+
+
+<div class="container-fluid footer bg-dark">
+    <p class="currentUser text-light m-0 pt-1 text-center"></p>
+    <div class="d-flex justify-content-center flex-column align-items-center">
+        <p class="text-white pt-3">If you need any support</p>
+        <p class="text-white">Email : <a href="mailto:chenyizhi1011@gmail.com" class="text-white">chenyizhi1011@gmail.com</a></p>
+    </div>
+</div>
+
+
+</body>
+<script>
+
+    var emailuser='';
+    firebase.auth().onAuthStateChanged(function(user) {
+        const currentUser = document.querySelector('.currentUser');
+        if (user) {
+            // console.log('Online');
+            emailuser = user.email;
+            currentUser.textContent = 'User: '+emailuser;
+            // console.log(emailuser);
+        } else {
+            // console.log('offline');
+            currentUser.textContent = 'offline';
+            window.location.href='Login.html';
+        }
+    });
+
+    $(document).ready(function (){
+        msgRef.ref('/Member/').on('value',function (snapshot){
+            let val = snapshot.val();
+            var list = '';
+            $.each(val , function (i, item){
+                // console.log(i, item);
+                list = `${list}<tr>
+                        <th scope="row">${i}</th>
+                        <td>${item.firstname}</td>
+                        <td>${item.lastname}</td>
+                        <td>${item.roomnumber}</td>
+                        <td>${item.stay}</td>
+                        <td>${item.emailaddress}</td>
+                        <td><button type="button" class="btn btn-primary remove" data-key="${item.firstname}_${item.lastname}">remove</button></td>
+                        </tr>`;
+                $('#tbody').html(list);
+            });
+
+            $('#tbody').on('click', '.remove',function (){
+                // console.log('remove', $(this).data('key'));
+                let key = $(this).data('key');
+                msgRef.ref('/Member/').child(key).remove();
+            })
+        });
+    });
+
+
+    //log out
+    logOut = document.querySelector('.log_out');
+    logOut.addEventListener('click',logOutBtn,false);
+
+
+    //auto log out
+    setTimeout(autoLogOut,900000);
+
+
+</script>
+<script src="Plugin_bootstrap/js/bootstrap.js"></script>
+</html>
