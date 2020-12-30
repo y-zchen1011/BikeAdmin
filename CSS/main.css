@@ -2,6 +2,16 @@ body{
     font-family: "Century Gothic" !important;
 }
 
+.logo a{
+    background-image: url("../images/Ciee_logo.svg");
+    display: block;
+    text-indent: 150%;
+    overflow: hidden;
+    white-space: nowrap;
+    background-repeat: no-repeat;
+}
+
+
 /*member*/
 .membership table{
     margin: 0 auto;

@@ -13,66 +13,67 @@
 
 </head>
 <body>
-<div class="container-fluid header clearfix bg-dark">
+
+<header class="bg-dark py-1">
     <div class="container">
-        <a href="#"><img class="my-2" src="images/Ciee_logo.svg"></a>
+        <h1 class="logo"><a href="https://cieeberlin.org">CIEE</a></h1>
     </div>
-</div>
+</header>
 
 
-<div class="container-fluid main clearfix bg-light d-flex justify-content-center align-items-center ">
-    <div class="col-lg-8 mx-auto py-5 ">
-    <h1>Log in</h1>
-    <h5></h5>
-    <input type="email" class="form-control mt-2" id="userMail" placeholder="email address">
-    <input type="password" class="form-control mt-2" id="pw" placeholder="password">
-    <p class="text-danger" id="errMsg"></p>
-    <div class="d-flex justify-content-lg-end">
-        <button class="btn btn-primary mt-2 px-4" id="log_in_send">log in</button>
+<main class="bg-light d-flex justify-content-center align-items-center">
+    <section class="container">
+        <div class="mx-auto py-5">
+            <h2>Log in</h2>
+            <input type="email" class="form-control mt-2" id="userMail" placeholder="email address">
+            <input type="password" class="form-control mt-2" id="pw" placeholder="password">
+            <p class="text-danger" id="errMsg"></p>
+            <div class="d-flex justify-content-lg-end">
+                <button class="btn btn-primary mt-2 px-4" id="btn_logIn">log in</button>
+            </div>
+        </div>
+    </section>
+</main>
+
+
+<footer class="bg-dark">
+    <div class="container d-flex justify-content-center flex-column align-items-center text-white">
+        <p class=" pt-4">If you need any support</p>
+        <p class="">Email : <a href="mailto:chenyizhi1011@gmail.com" class="text-white">chenyizhi1011@gmail.com</a></p>
     </div>
-    <p class="message"></p>
-</div>
-</div>
-
-
-<div class="container-fluid footer bg-dark d-flex justify-content-center flex-column align-items-center">
-    <p class="text-white pt-4">If you need any support</p>
-    <p class="text-white">Email : <a href="mailto:chenyizhi1011@gmail.com" class="text-white">chenyizhi1011@gmail.com</a></p>
-</div>
-
+</footer>
 
 
 </body>
+
+
 <script>
-    var emailuser='';
-    const email =document.querySelector('#userMail');
-    const pwd =document.querySelector('#pw');
-    const message = document.querySelector('.message');
+    let emailUser = '';
+    const email = document.querySelector('#userMail');
+    const pwd = document.querySelector('#pw');
     const errMsg = document.querySelector('#errMsg');
 
 
     //login
-    btn_signUp = document.querySelector('#log_in_send');
-    btn_signUp.addEventListener('click', (e) => {
+    $('#btn_logIn').click(function (e) {
         e.preventDefault();
         let user = {
-            emailuser: email.value,
+            emailUser: email.value,
             pwd: pwd.value
         };
-        console.log(user.emailuser, user.pwd);
-        firebase.auth().signInWithEmailAndPassword(user.emailuser, user.pwd)
+        firebase.auth().signInWithEmailAndPassword(user.emailUser, user.pwd)
             .then(() => {
-                var Cuser = firebase.auth().currentUser;
-                if (Cuser) {
+                let currentUser = firebase.auth().currentUser;
+                if (currentUser) {
                     msgRef.ref('/userActivity/').push(
                         {
                             action: 'sign_in',
                             time: formatDate(),
-                            email: user.emailuser,
+                            email: user.emailUser,
                         }
                     );
                     console.log('User is signed in.');
-                    window.location.href='Overview.html';
+                    window.location.href = 'Overview.html';
                 }
             })
             .catch((error) => {
@@ -82,10 +83,11 @@
             });
     });
 
+
     // Size screen
-    document.querySelector('.main').style.height = (window.innerHeight-166) + 'px';
-    window.onresize = function (){
-        document.querySelector('.main').style.height = (window.innerHeight-166) + 'px';
+    document.querySelector('main').style.height = (window.innerHeight - 166) + 'px';
+    window.onresize = function () {
+        document.querySelector('main').style.height = (window.innerHeight - 166) + 'px';
     }
 
 </script>

@@ -2,84 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a43a9a30-8904-4970-8a83-2a65112b017b" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../CSS/main.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../EndPage.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Login.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Mailinglist.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Membership.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Overview.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Plugin_bootstrap/css/bootstrap-grid.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Plugin_bootstrap/css/bootstrap-grid.css.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Plugin_bootstrap/css/bootstrap-grid.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Plugin_bootstrap/css/bootstrap-grid.min.css.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Plugin_bootstrap/css/bootstrap-reboot.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Plugin_bootstrap/css/bootstrap-reboot.css.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Plugin_bootstrap/css/bootstrap-reboot.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Plugin_bootstrap/css/bootstrap-reboot.min.css.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Plugin_bootstrap/css/bootstrap.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Plugin_bootstrap/css/bootstrap.css.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Plugin_bootstrap/css/bootstrap.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Plugin_bootstrap/css/bootstrap.min.css.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Plugin_bootstrap/js/bootstrap.bundle.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Plugin_bootstrap/js/bootstrap.bundle.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Plugin_bootstrap/js/bootstrap.bundle.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Plugin_bootstrap/js/bootstrap.bundle.min.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Plugin_bootstrap/js/bootstrap.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Plugin_bootstrap/js/bootstrap.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Plugin_bootstrap/js/bootstrap.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Plugin_bootstrap/js/bootstrap.min.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Plugin_fontawesome/css/all.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Plugin_fontawesome/css/all.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Plugin_fontawesome/css/brands.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Plugin_fontawesome/css/brands.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Plugin_fontawesome/css/fontawesome.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Plugin_fontawesome/css/fontawesome.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Plugin_fontawesome/css/regular.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Plugin_fontawesome/css/regular.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Plugin_fontawesome/css/solid.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Plugin_fontawesome/css/solid.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Plugin_fontawesome/css/svg-with-js.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Plugin_fontawesome/css/svg-with-js.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Plugin_fontawesome/css/v4-shims.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Plugin_fontawesome/css/v4-shims.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Plugin_fontawesome/webfonts/fa-brands-400.eot" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Plugin_fontawesome/webfonts/fa-brands-400.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Plugin_fontawesome/webfonts/fa-brands-400.ttf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Plugin_fontawesome/webfonts/fa-brands-400.woff" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Plugin_fontawesome/webfonts/fa-brands-400.woff2" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Plugin_fontawesome/webfonts/fa-regular-400.eot" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Plugin_fontawesome/webfonts/fa-regular-400.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Plugin_fontawesome/webfonts/fa-regular-400.ttf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Plugin_fontawesome/webfonts/fa-regular-400.woff" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Plugin_fontawesome/webfonts/fa-regular-400.woff2" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Plugin_fontawesome/webfonts/fa-solid-900.eot" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Plugin_fontawesome/webfonts/fa-solid-900.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Plugin_fontawesome/webfonts/fa-solid-900.ttf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Plugin_fontawesome/webfonts/fa-solid-900.woff" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Plugin_fontawesome/webfonts/fa-solid-900.woff2" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Registration_ST.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Rental.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Setting.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Test_ST.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../VueAdmin_version/VueMembership.html" beforeDir="false" afterPath="$PROJECT_DIR$/../VueAdmin_version/VueMembership.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../VueAdmin_version/VueOverview.html" beforeDir="false" afterPath="$PROJECT_DIR$/../VueAdmin_version/VueOverview.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../VueAdmin_version/VueRental.html" beforeDir="false" afterPath="$PROJECT_DIR$/../VueAdmin_version/VueRental.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../VueAdmin_version/VueSetting.html" beforeDir="false" afterPath="$PROJECT_DIR$/../VueAdmin_version/VueSetting.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../attachment/Bicycle Rental Agreement.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../attachment/Equipment Rental Agreement.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../images/Ciee_logo.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../images/image001.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../images/test10.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../images/test8.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../images/test9.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../images/warningProcess.m4v" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../js/config.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../js/form.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../js/grading.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../js/jquery-3.5.0.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../js/vue.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../warningProcessSlides.key" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CSS/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/CSS/main.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Overview.html" beforeDir="false" afterPath="$PROJECT_DIR$/Overview.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -87,7 +14,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="JsBowerSettings">
     <node-interpreter value="project" />
@@ -103,10 +30,27 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
     <property name="node.js.path.for.package.jscs" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.jscs" value="" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="settings.editor.selected.configurable" value="reference.settings.ide.settings.web.browsers" />
     <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="RunManager">
+    <configuration name="index.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/Admin/index.html" useBuiltInWebServerPort="true">
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JavaScript Debug.index.html" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -118,6 +62,9 @@
       <updated>1608563668003</updated>
       <workItem from="1608563669121" duration="328000" />
       <workItem from="1608564797452" duration="39000" />
+      <workItem from="1609061568252" duration="542000" />
+      <workItem from="1609150687976" duration="1779000" />
+      <workItem from="1609316823972" duration="1502000" />
     </task>
     <servers />
   </component>
@@ -125,6 +72,38 @@
     <option name="version" value="3" />
   </component>
   <component name="WindowStateProjectService">
+    <state width="1419" height="292" key="GridCell.Tab.0.bottom" timestamp="1609318684974">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state width="1419" height="292" key="GridCell.Tab.0.bottom/0.0.1440.900@0.0.1440.900" timestamp="1609318684974" />
+    <state width="1419" height="292" key="GridCell.Tab.0.center" timestamp="1609318684972">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state width="1419" height="292" key="GridCell.Tab.0.center/0.0.1440.900@0.0.1440.900" timestamp="1609318684972" />
+    <state width="1419" height="292" key="GridCell.Tab.0.left" timestamp="1609318684971">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state width="1419" height="292" key="GridCell.Tab.0.left/0.0.1440.900@0.0.1440.900" timestamp="1609318684971" />
+    <state width="1419" height="292" key="GridCell.Tab.0.right" timestamp="1609318684973">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state width="1419" height="292" key="GridCell.Tab.0.right/0.0.1440.900@0.0.1440.900" timestamp="1609318684973" />
+    <state width="1419" height="292" key="GridCell.Tab.1.bottom" timestamp="1609318684979">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state width="1419" height="292" key="GridCell.Tab.1.bottom/0.0.1440.900@0.0.1440.900" timestamp="1609318684979" />
+    <state width="1419" height="292" key="GridCell.Tab.1.center" timestamp="1609318684975">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state width="1419" height="292" key="GridCell.Tab.1.center/0.0.1440.900@0.0.1440.900" timestamp="1609318684975" />
+    <state width="1419" height="292" key="GridCell.Tab.1.left" timestamp="1609318684974">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state width="1419" height="292" key="GridCell.Tab.1.left/0.0.1440.900@0.0.1440.900" timestamp="1609318684974" />
+    <state width="1419" height="292" key="GridCell.Tab.1.right" timestamp="1609318684976">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state width="1419" height="292" key="GridCell.Tab.1.right/0.0.1440.900@0.0.1440.900" timestamp="1609318684976" />
     <state x="385" y="196" width="670" height="676" key="search.everywhere.popup" timestamp="1608564832260">
       <screen x="0" y="0" width="1440" height="900" />
     </state>

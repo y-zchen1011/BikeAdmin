@@ -127,7 +127,7 @@
 
 
 <div class="container-fluid footer bg-dark">
-    <p class="currentUser text-light m-0 pt-1 text-center"></p>
+    <p class="text-light m-0 pt-1 text-center" id="currentUser"></p>
     <div class="d-flex justify-content-center flex-column align-items-center">
     <p class="text-white pt-3">If you need any support</p>
     <p class="text-white">Email : <a href="mailto:chenyizhi1011@gmail.com" class="text-white">chenyizhi1011@gmail.com</a></p>
@@ -138,33 +138,33 @@
 
 <script>
 
-    var emailuser='';
+    let emailUser='';
 
     //check Auth
-    firebase.auth().onAuthStateChanged(function(user) {
-        const currentUser = document.querySelector('.currentUser');
+    (firebase.auth().onAuthStateChanged(function(user) {
+        const currentUser = document.querySelector('#currentUser');
         if (user) {
             console.log('Online');
-            emailuser = user.email;
-            currentUser.textContent = 'User: '+emailuser;
-            console.log(emailuser);
+            emailUser = user.email;
+            currentUser.textContent = 'User: '+emailUser;
+            console.log(emailUser);
         } else {
             console.log('offline');
             currentUser.textContent = 'offline';
             window.location.href='Login.html';
         }
-    });
+    })());
 
 
     //load Data
     $(document).ready(function (){
         msgRef.ref('/Bike/').on('value',function (snapshot){
             let val = snapshot.val();
-            var list = '';
+            let list = '';
             $.each(val , function (i, item){
                 //console.log(i, item);
-                if(item.availability == ""){
-                    if(item.functionality == ""){
+                if(item.availability === ""){
+                    if(item.functionality === ""){
                         list = `${list}<tr>
                         <th scope="row">${item.Bikenumber.replace('_',' ')}</th>
                         <td><i class="fas fa-check text-success"></td>
@@ -184,7 +184,7 @@
                         $('#tbodyOverview').html(list);
                     }
                 }else{
-                    if(item.functionality == ""){
+                    if(item.functionality === ""){
                         list = `${list}<tr>
                         <th scope="row">${item.Bikenumber.replace('_',' ')}</th>
                         <td><i class="fas fa-check text-success"></td>
@@ -207,6 +207,8 @@
             });
         });
     });
+
+
 
     //log out
     logOut = document.querySelector('.log_out');
