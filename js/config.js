@@ -16,7 +16,7 @@
         emailjs.init("user_w7ITPXXFiAmWA32EAz7ey");
     })();
     //send
-    function sendMail_rent() {
+    function sendMail_rent(templateParams) {
         emailjs.send('service_7zh11gp', 'template_tmc2lrj', templateParams)
             .then(function (response) {
                 console.log('SUCCESS!', response.status, response.text);

@@ -325,7 +325,23 @@
                 hasbike:true,
                 bikeout :formatDate(),
                 warningCode : 0,
-            });
+            }).then(
+                function() {
+                    let templateParams = {
+                        mailadress : usermail,
+                        Name : user.replace('_',' '),
+                        Action: action,
+                        Bike : `${bike}`,
+                        Time : `${timestamp}`,
+                    };
+                    console.log(templateParams);
+                    console.log(templateParams.Bike);
+                    console.log(templateParams.Time);
+                    console.log(templateParams.Action);
+                    sendMail_rent(templateParams);
+                    alert(action +' success');
+                }
+            );
         }else if(action === "check in"){
             // console.log('click check in');
             msgRef.ref('/Record/'+timestamp).set({
@@ -347,10 +363,25 @@
                 hasbike:false,
                 bikeout :"",
                 warningCode : 0,
-            });
+            }).then(
+            function() {
+                let templateParams = {
+                    mailadress : usermail,
+                    Name : user.replace('_',' '),
+                    Action: action,
+                    Bike : `${bike}`,
+                    Time : `${timestamp}`,
+                };
+                console.log(templateParams);
+                console.log(templateParams.Bike);
+                console.log(templateParams.Time);
+                console.log(templateParams.Action);
+                sendMail_rent(templateParams);
+                alert(action +' success');
+            }
+            );
         }
-        msgRef.ref('/Member/' + user).once('child_added',function (){
-
+        /*msgRef.ref('/Member/' + user).once('child_added',function (){
             let templateParams = {
                 mailadress : usermail,
                 Name : user.replace('_',' '),
@@ -362,11 +393,10 @@
             console.log(templateParams.Bike);
             console.log(templateParams.Time);
             console.log(templateParams.Action);
-
             sendMail_rent(templateParams);
             alert(action +' success');
             // console.log('click')
-        });
+        });*/
     }, false);
 
 
