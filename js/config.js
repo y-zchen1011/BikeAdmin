@@ -13,11 +13,11 @@
 /*Email start*/
     //config
     (function(){
-        emailjs.init("user_w7ITPXXFiAmWA32EAz7ey");
+        emailjs.init("user_bLcS7SbZdTLTMgGDlu4HP");
     })();
     //send
     function sendMail_rent(templateParams) {
-        emailjs.send('service_7zh11gp', 'template_tmc2lrj', templateParams)
+        emailjs.send('service_3dk0adg', 'template_ljro6rq', templateParams)
             .then(function (response) {
                 console.log('SUCCESS!', response.status, response.text);
             }, function (error) {
@@ -26,7 +26,7 @@
             });
     }
     function sendMail_info(templateParams) {
-        emailjs.send('service_7zh11gp', 'template_vszkyxr', templateParams)
+        emailjs.send('service_3dk0adg', 'template_k6y7q2b', templateParams)
             .then(function (response) {
                 console.log('SUCCESS!', response.status, response.text);
             }, function (error) {
