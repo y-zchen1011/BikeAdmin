@@ -101,7 +101,7 @@
                     <h2 class="col-lg-8 pl-0">Step 2: </h2>
                     <label class="mr-sm-2 sr-only" for="inlineFormCustomSelectforbike">Preference</label>
                     <select class="custom-select mr-sm-2" id="inlineFormCustomSelectforbike">
-                        <option selected disabled>--Select a Bike--</option>
+                        <option selected disabled value="">--Select a Bike--</option>
 
                     </select>
                 </div>
@@ -110,7 +110,7 @@
                     <p class="my-1">You should merely find the only person corresponded to the selected bike when <span class="text-danger">checking in.</span></p>
                     <label class="mr-sm-2 sr-only" for="inlineFormCustomSelectforuser">Preference</label>
                     <select class="custom-select mr-sm-2" id="inlineFormCustomSelectforuser">
-                        <option selected disabled>--Select a person--</option>
+                        <option selected disabled value="">--Select a person--</option>
 
                     </select>
                 </div>
@@ -186,7 +186,8 @@
     action.addEventListener('change',function (e){
         if(action.value === "check out"){
             // console.log('check out');
-
+            userchoice.value = "";
+            bikechoice.value = "";
             //load available bike
             msgRef.ref('/Bike/').on('value',function (snapshot){
                 let val = snapshot.val();
@@ -237,7 +238,8 @@
 
         else if(action.value === "check in"){
             // console.log('check in');
-
+            userchoice.value = "";
+            bikechoice.value = "";
             //load all checked out bike
             msgRef.ref('/Bike/').on('value',function (snapshot){
                 let val = snapshot.val();
@@ -300,6 +302,7 @@
         let sortFactor =999999999999999-e.timeStamp;
         if(action === "" || bike=== "" || user===""){
             alert("Please select all blanks");
+            return;
         }
 
         if(action === "check out"){

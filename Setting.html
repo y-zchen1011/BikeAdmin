@@ -194,7 +194,7 @@
             let val = snapshot.val();
             var list = '';
             $.each(val , function (i, item){
-                console.log(i, item);
+                //console.log(i, item);
                 if(item.emailaddress !== "")return;
                 list = `${list}<option value=${item.Bikenumber}>${item.Bikenumber.replace('_',' ')}</option>`;
                 $('#bike_issue_select').html('<option selected disabled>--Select a Bike--</option>'+list);
@@ -309,7 +309,7 @@
             let val = snapshot.val();
             var list = '';
             $.each(val , function (i, item){
-                console.log(i, item);
+                //console.log(i, item);
                 list = `${list}<option class="remove" data-key=${i} value=${item.Bikenumber}>${item.Bikenumber.replace('_',' ')}</option>`
                 $('#bike_remove_select').html('<option selected disabled value="">--Select a Bike--</option>'+list);
             });
