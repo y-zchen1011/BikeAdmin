@@ -11,6 +11,7 @@
     <script src="https://www.gstatic.com/firebasejs/4.1.3/firebase.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/emailjs-com@2/dist/email.min.js"></script>
     <script src="js/config.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <link href="Plugin_bootstrap/css/bootstrap.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css" integrity="sha512-aOG0c6nPNzGk+5zjwyJaoRUgCdOrfSDhmMID2u4+OIslr0GjpLKo7Xm0Ao3xmpM4T8AmIouRkqwj1nrdVsLKEQ==" crossorigin="anonymous" />
     <link href="Plugin_fontawesome/css/all.css" rel="stylesheet">
@@ -217,6 +218,10 @@
 
     //auto log out
     setTimeout(autoLogOut,900000);
+    
+    axios.get("https://cieebikeapi.herokuapp.com/api/bikes")
+    .then((res)=>{console.log(res)});
+    
 </script>
 <script src="Plugin_bootstrap/js/bootstrap.js"></script>
 
