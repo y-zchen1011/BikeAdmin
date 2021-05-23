@@ -220,7 +220,7 @@
     setTimeout(autoLogOut,900000);
     
     axios.get("https://cors-anywhere.herokuapp.com/https://cieebikeapi.herokuapp.com/api/bikes")
-        .then((res) => {console.log(res)});
+        .then((res) => {console.log(res.data)});
     
 </script>
 <script src="Plugin_bootstrap/js/bootstrap.js"></script>
