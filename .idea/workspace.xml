@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="a43a9a30-8904-4970-8a83-2a65112b017b" name="Default Changelist" comment="commit">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Setting.html" beforeDir="false" afterPath="$PROJECT_DIR$/Setting.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Membership.html" beforeDir="false" afterPath="$PROJECT_DIR$/Membership.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -12,6 +12,15 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/js/config.js" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Overview.html" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Setting.html" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Rental.html" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/index.html" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Mailinglist.html" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Membership.html" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="JsBowerSettings">
     <node-interpreter value="project" />
@@ -67,6 +76,9 @@
       <workItem from="1621799008680" duration="1004000" />
       <workItem from="1621833752213" duration="2496000" />
       <workItem from="1621861353321" duration="2295000" />
+      <workItem from="1621872440348" duration="73000" />
+      <workItem from="1625042963220" duration="1247000" />
+      <workItem from="1628761083968" duration="1055000" />
     </task>
     <task id="LOCAL-00001" summary="commit">
       <created>1621798792783</created>
@@ -96,7 +108,14 @@
       <option name="project" value="LOCAL" />
       <updated>1621800006300</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="commit">
+      <created>1621872458056</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1621872458056</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
