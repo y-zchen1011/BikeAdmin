@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a43a9a30-8904-4970-8a83-2a65112b017b" name="Default Changelist" comment="commit">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Mailinglist.html" beforeDir="false" afterPath="$PROJECT_DIR$/Mailinglist.html" afterDir="false" />
-    </list>
+    <list default="true" id="a43a9a30-8904-4970-8a83-2a65112b017b" name="Default Changelist" comment="commit" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -79,6 +76,7 @@
       <workItem from="1621872440348" duration="73000" />
       <workItem from="1625042963220" duration="1247000" />
       <workItem from="1628761083968" duration="2783000" />
+      <workItem from="1628777954415" duration="404000" />
     </task>
     <task id="LOCAL-00001" summary="commit">
       <created>1621798792783</created>
@@ -136,7 +134,14 @@
       <option name="project" value="LOCAL" />
       <updated>1628763418147</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="commit">
+      <created>1628778230554</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1628778230554</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
