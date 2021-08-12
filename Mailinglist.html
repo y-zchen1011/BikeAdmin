@@ -181,6 +181,10 @@
                                         $('#tbody').html(list);
                                     }else{
                                         console.log(false);
+                                        list = `${list}<tr>
+                                                <td>All Biles are in-House</td>
+                                                </tr>`;
+                                        $('#tbody').html(list);
                                 }
                             });
                         });
