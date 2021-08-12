@@ -179,12 +179,12 @@
                                                 </tr>`;
                                     }
                                         $('#tbody').html(list);
-                                    }else{
-                                        console.log(false);
-                                        list = `<tr>
-                                                <td>All Bikes are in-House</td>
-                                                </tr>`;
-                                        $('#tbody').html(list);
+                                }else{
+                                    console.log(false);
+                                    list = `<tr>
+                                            <td>All Bikes are in-House</td>
+                                            </tr>`;
+                                    $('#tbody').html(list);
                                 }
                             });
                         });
@@ -212,7 +212,9 @@
                             console.log('SUCCESS!', response.status, response.text);
                         }, function (error) {
                             console.log('FAILED...', error);
-                            alert('Mailing Error, please try again');
+                            console.log('Using back-up Email Server');
+                            axios.post("https://cieemail.herokuapp.com/send/info", templateParams)
+                                .then((res)=>{console.log(res.config.data)});
                         });
                     });
                 msgRef.ref('/Member/').child(key).update({warningCode : 1});
@@ -236,7 +238,9 @@
                             console.log('SUCCESS!', response.status, response.text);
                         }, function (error) {
                             console.log('FAILED...', error);
-                            alert('Mailing Error, please try again');
+                            console.log('Using back-up Email Server');
+                            axios.post("https://cieemail.herokuapp.com/send/info", templateParams)
+                                .then((res)=>{console.log(res.config.data)});
                         });
 
                 });
@@ -266,7 +270,9 @@
                         },
                             function (error) {
                             console.log('FAILED...', error);
-                            alert('Mailing Error, please try again');
+                                console.log('Using back-up Email Server');
+                                axios.post("https://cieemail.herokuapp.com/send/info", templateParams)
+                                    .then((res)=>{console.log(res.config.data)});
                         });
 
                 });
@@ -291,7 +297,9 @@
                             console.log('SUCCESS!', response.status, response.text);
                         }, function (error) {
                             console.log('FAILED...', error);
-                            alert('Mailing Error, please try again');
+                            console.log('Using back-up Email Server');
+                            axios.post("https://cieemail.herokuapp.com/send/info", templateParams)
+                                .then((res)=>{console.log(res.config.data)});
                         });
 
                 });

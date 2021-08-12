@@ -13,7 +13,8 @@
 /*Email start*/
     //config
     (function(){
-        emailjs.init("user_bLcS7SbZdTLTMgGDlu4HP");
+        //emailjs.init("user_bLcS7SbZdTLTMgGDlu4HP");
+        emailjs.init("ser_bLcS7SbZdTLTMgGDlu4HP");
     })();
     //send
     function sendMail_rent(templateParams) {
@@ -22,7 +23,9 @@
                 console.log('SUCCESS!', response.status, response.text);
             }, function (error) {
                 console.log('FAILED...', error);
-                alert('Mailing Error, please try again');
+                console.log('Using back-up Email Server');
+                axios.post("https://cieemail.herokuapp.com/send/action", templateParams)
+                    .then((res)=>{console.log(res.config.data)});
             });
     }
     function sendMail_info(templateParams) {
@@ -31,7 +34,9 @@
                 console.log('SUCCESS!', response.status, response.text);
             }, function (error) {
                 console.log('FAILED...', error);
-                alert('Mailing Error, please try again');
+                console.log('Using back-up Email Server');
+                axios.post("https://cieemail.herokuapp.com/send/info", templateParams)
+                    .then((res)=>{console.log(res.config.data)});
             });
     }
 
