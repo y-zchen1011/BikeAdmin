@@ -13,8 +13,8 @@
 /*Email start*/
     //config
     (function(){
-        //emailjs.init("user_bLcS7SbZdTLTMgGDlu4HP");
-        emailjs.init("ser_bLcS7SbZdTLTMgGDlu4HP");
+        emailjs.init("user_bLcS7SbZdTLTMgGDlu4HP");
+       
     })();
     //send
     function sendMail_rent(templateParams) {
