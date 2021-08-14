@@ -20,23 +20,33 @@
     function sendMail_rent(templateParams) {
         emailjs.send('service_3dk0adg', 'template_ljro6rq', templateParams)
             .then(function (response) {
+                console.log("Using Primary Email Server...");
                 console.log('SUCCESS!', response.status, response.text);
             }, function (error) {
                 console.log('FAILED...', error);
                 console.log('Using back-up Email Server');
                 axios.post("https://cieemail.herokuapp.com/send/action", templateParams)
-                    .then((res)=>{console.log(res.config.data)});
+                    .then((res)=>{console.log(res.config.data)})
+                    .catch((err)=>{
+                        console.log("Both Email Servers are dead, " + err);
+                        alert("Both Email Servers are dead, Please contact Admin and send Email manually");
+                    });
             });
     }
     function sendMail_info(templateParams) {
         emailjs.send('service_3dk0adg', 'template_k6y7q2b', templateParams)
             .then(function (response) {
+                console.log("Using Primary Email Server...");
                 console.log('SUCCESS!', response.status, response.text);
             }, function (error) {
                 console.log('FAILED...', error);
                 console.log('Using back-up Email Server');
                 axios.post("https://cieemail.herokuapp.com/send/info", templateParams)
-                    .then((res)=>{console.log(res.config.data)});
+                    .then((res)=>{console.log(res.config.data)})
+                    .catch((err)=>{
+                        console.log("Both Email Servers are dead, " + err);
+                        alert("Both Email Servers are dead, Please contact Admin and send Email manually");
+                    });
             });
     }
 

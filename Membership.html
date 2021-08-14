@@ -88,12 +88,12 @@
     firebase.auth().onAuthStateChanged(function(user) {
         const currentUser = document.querySelector('.currentUser');
         if (user) {
-            // console.log('Online');
+            console.log('Online');
             emailuser = user.email;
             currentUser.textContent = 'User: '+emailuser;
-            // console.log(emailuser);
+            console.log(emailuser);
         } else {
-            // console.log('offline');
+            console.log('offline');
             currentUser.textContent = 'offline';
             window.location.href='index.html';
         }
@@ -125,6 +125,46 @@
         });
     });
 
+    axios.get("https://cieebikeapi.herokuapp.com/api/members")
+        .then((res)=>{
+            console.log("Primary Server is used");
+            let val = res.data;
+            concatMemberString(val);
+            $('#tbody').on('click', '.remove',function (){
+                let key = $(this).data('key');
+                msgRef.ref('/Member/').child(key).remove();
+            })
+        })
+        .catch((err)=>{
+            console.log("Error:"+err);
+            console.log("Using Back-up Server...");
+            msgRef.ref('/Member/').on('value',function (snapshot){
+                let val = snapshot.val();
+                concatMemberString(val);
+                $('#tbody').on('click', '.remove',function (){
+                    // console.log('remove', $(this).data('key'));
+                    let key = $(this).data('key');
+                    msgRef.ref('/Member/').child(key).remove();
+                })
+            });
+        });
+
+    function concatMemberString(val){
+        let list = "";
+        $.each(val , function (i, item){
+            // console.log(i, item);
+            list = `${list}<tr>
+                        <th scope="row">${i}</th>
+                        <td>${item.firstname}</td>
+                        <td>${item.lastname}</td>
+                        <td>${item.roomnumber}</td>
+                        <td>${item.stay}</td>
+                        <td>${item.emailaddress}</td>
+                        <td><button type="button" class="btn btn-primary remove" data-key="${item.firstname}_${item.lastname}">remove</button></td>
+                        </tr>`;
+            $('#tbody').html(list);
+        });
+    }
 
     //log out
     logOut = document.querySelector('.log_out');

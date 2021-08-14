@@ -385,22 +385,6 @@
             }
             );
         }
-        /*msgRef.ref('/Member/' + user).once('child_added',function (){
-            let templateParams = {
-                mailadress : usermail,
-                Name : user.replace('_',' '),
-                Action: action,
-                Bike : `${bike}`,
-                Time : `${timestamp}`,
-            };
-            console.log(templateParams);
-            console.log(templateParams.Bike);
-            console.log(templateParams.Time);
-            console.log(templateParams.Action);
-            sendMail_rent(templateParams);
-            alert(action +' success');
-            // console.log('click')
-        });*/
     }, false);
 
 

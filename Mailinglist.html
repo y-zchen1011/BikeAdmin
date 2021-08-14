@@ -203,16 +203,7 @@
                         Name : val.firstname,
                     };
                     console.log(templateParams);
-
-                    emailjs.send('service_3dk0adg', 'template_k6y7q2b', templateParams)
-                        .then(function (response) {
-                            console.log('SUCCESS!', response.status, response.text);
-                        }, function (error) {
-                            console.log('FAILED...', error);
-                            console.log('Using back-up Email Server');
-                            axios.post("https://cieemail.herokuapp.com/send/info", templateParams)
-                                .then((res)=>{console.log(res.config.data)});
-                        });
+                    sendMail_info(templateParams);
                     });
                 msgRef.ref('/Member/').child(key).update({warningCode : 1});
                 this.textContent = 'done';
@@ -230,16 +221,7 @@
                         mailadress : val.emailaddress,
                         Name : val.firstname,
                     };
-                    emailjs.send('service_3dk0adg', 'template_k6y7q2b', templateParams)
-                        .then(function (response) {
-                            console.log('SUCCESS!', response.status, response.text);
-                        }, function (error) {
-                            console.log('FAILED...', error);
-                            console.log('Using back-up Email Server');
-                            axios.post("https://cieemail.herokuapp.com/send/info", templateParams)
-                                .then((res)=>{console.log(res.config.data)});
-                        });
-
+                    sendMail_info(templateParams);
                 });
 
 
@@ -259,19 +241,7 @@
                         mailadress : val.emailaddress,
                         Name : val.firstname,
                     };
-
-                    emailjs.send('service_3dk0adg', 'template_k6y7q2b', templateParams)
-                        .then(
-                            function (response) {
-                            console.log('SUCCESS!', response.status, response.text);
-                        },
-                            function (error) {
-                            console.log('FAILED...', error);
-                                console.log('Using back-up Email Server');
-                                axios.post("https://cieemail.herokuapp.com/send/info", templateParams)
-                                    .then((res)=>{console.log(res.config.data)});
-                        });
-
+                    sendMail_info(templateParams);
                 });
                 msgRef.ref('/Member/').child(key).update({warningCode : 3});
                 this.textContent = 'done';
@@ -289,16 +259,7 @@
                         mailadress : val.emailaddress,
                         Name : val.firstname,
                     };
-                    emailjs.send('service_3dk0adg', 'template_k6y7q2b', templateParams)
-                        .then(function (response) {
-                            console.log('SUCCESS!', response.status, response.text);
-                        }, function (error) {
-                            console.log('FAILED...', error);
-                            console.log('Using back-up Email Server');
-                            axios.post("https://cieemail.herokuapp.com/send/info", templateParams)
-                                .then((res)=>{console.log(res.config.data)});
-                        });
-
+                    sendMail_info(templateParams);
                 });
                 msgRef.ref('/Member/').child(key).update({warningCode : 4});
             });

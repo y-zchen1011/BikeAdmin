@@ -155,60 +155,71 @@
         }
     })());
 
-
     //load Data
-    $(document).ready(function (){
-        msgRef.ref('/Bike/').on('value',function (snapshot){
-            let val = snapshot.val();
-            let list = '';
-            console.log(val);
-                    $.each(val , function (i, item){
-                        //console.log(i, item);
-                        if(item.availability === ""){
-                            if(item.functionality === ""){
-                                list = `${list}<tr>
+    axios.get("https://cieebikeapi.herokuapp.com/api/bikes")
+        .then((res)=>{
+            //console.log(res.data);
+            console.log("Primary Server is used")
+            let val = res.data;
+            concatString(val);
+        })
+        .catch((err)=>{
+            console.log("Error:"+err);
+            console.log("Using Back-up Server...");
+            msgRef.ref('/Bike/').on('value',function (snapshot){
+                let val = snapshot.val();
+                concatString(val);
+            })
+        });
+
+
+    function concatString(val){
+        let list = '';
+        $.each(val , function (i, item){
+            //console.log(i, item);
+            if(item.availability === ""){
+                if(item.functionality === ""){
+                    list = `${list}<tr>
                                 <th scope="row">${item.Bikenumber.replace('_',' ')}</th>
                                 <td><i class="fas fa-check text-success"></td>
                                 <td ><i class="fas fa-check text-success"></i></td>
                                 <td>${item.availability.replace('_',' ')}</td>
                                 <td>${item.emailaddress}</td>
                                 </tr>`;
-                                $('#tbodyOverview').html(list);
-                            }else {
-                                list = `${list}<tr>
+                    $('#tbodyOverview').html(list);
+                }else {
+                    list = `${list}<tr>
                                 <th scope="row">${item.Bikenumber.replace('_',' ')}</th>
                                 <td class="text-danger">${item.functionality}</td>
                                 <td ><i class="fas fa-times text-danger"></i></td>
                                 <td>${item.availability.replace('_',' ')}</td>
                                 <td>${item.emailaddress}</td>
                                 </tr>`;
-                                $('#tbodyOverview').html(list);
-                            }
-                        }else{
-                            if(item.functionality === ""){
-                                list = `${list}<tr>
+                    $('#tbodyOverview').html(list);
+                }
+            }else{
+                if(item.functionality === ""){
+                    list = `${list}<tr>
                                 <th scope="row">${item.Bikenumber.replace('_',' ')}</th>
                                 <td><i class="fas fa-check text-success"></td>
                                 <td><i class="fas fa-times text-danger"></i></td>
                                 <td>${item.availability.replace('_',' ')}</td>
                                 <td>${item.emailaddress}</td>
                                 </tr>`;
-                                $('#tbodyOverview').html(list);
-                            }else {
-                                list = `${list}<tr>
+                    $('#tbodyOverview').html(list);
+                }else {
+                    list = `${list}<tr>
                                 <th scope="row">${item.Bikenumber.replace('_',' ')}</th>
                                 <td class="text-danger">${item.functionality}</td>
                                 <td><i class="fas fa-times text-danger"></i></td>
                                 <td>${item.availability.replace('_',' ')}</td>
                                 <td>${item.emailaddress}</td>
                                 </tr>`;
-                                $('#tbodyOverview').html(list);
-                            }
-                        }
-                    });
-                });
-            });
-
+                    $('#tbodyOverview').html(list);
+                }
+            }
+        });
+    }
 
 
     //log out
@@ -218,55 +229,7 @@
 
     //auto log out
     setTimeout(autoLogOut,900000);
-    
-    /*axios.get("https://cors-anywhere.herokuapp.com/https://cieebikeapi.herokuapp.com/api/bikes")
-        .then((res) => {
-            let bikeData = res.data;
-            let list = '';
-            console.log(bikeData);
-            console.log(res.data);
-            $.each(bikeData, (i, item)=>{if(item.availability === ""){
-                if(item.functionality === ""){
-                    list = `${list}<tr>
-                        <th scope="row">${item.Bikenumber.replace('_',' ')}</th>
-                        <td><i class="fas fa-check text-success"></td>
-                        <td ><i class="fas fa-check text-success"></i></td>
-                        <td>${item.availability.replace('_',' ')}</td>
-                        <td>${item.emailaddress}</td>
-                        </tr>`;
-                    $('#tbodyOverview').html(list);
-                }else {
-                    list = `${list}<tr>
-                        <th scope="row">${item.Bikenumber.replace('_',' ')}</th>
-                        <td class="text-danger">${item.functionality}</td>
-                        <td ><i class="fas fa-times text-danger"></i></td>
-                        <td>${item.availability.replace('_',' ')}</td>
-                        <td>${item.emailaddress}</td>
-                        </tr>`;
-                    $('#tbodyOverview').html(list);
-                }
-            }else{
-                if(item.functionality === ""){
-                    list = `${list}<tr>
-                        <th scope="row">${item.Bikenumber.replace('_',' ')}</th>
-                        <td><i class="fas fa-check text-success"></td>
-                        <td><i class="fas fa-times text-danger"></i></td>
-                        <td>${item.availability.replace('_',' ')}</td>
-                        <td>${item.emailaddress}</td>
-                        </tr>`;
-                    $('#tbodyOverview').html(list);
-                }else {
-                    list = `${list}<tr>
-                        <th scope="row">${item.Bikenumber.replace('_',' ')}</th>
-                        <td class="text-danger">${item.functionality}</td>
-                        <td><i class="fas fa-times text-danger"></i></td>
-                        <td>${item.availability.replace('_',' ')}</td>
-                        <td>${item.emailaddress}</td>
-                        </tr>`;
-                    $('#tbodyOverview').html(list);
-                }
-            }});
-        });*/
+
     
 </script>
 <script src="Plugin_bootstrap/js/bootstrap.js"></script>
